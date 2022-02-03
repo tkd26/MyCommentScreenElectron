@@ -1,4 +1,4 @@
-const { ipcRenderer, clipboard, shell } = require('electron');
+const { ipcRenderer, clipboard, } = require('electron');
 
 const createButton = document.getElementById('createButton');
 const enterButton = document.getElementById('enterButton');
@@ -73,9 +73,22 @@ exitButton.addEventListener('click', async () => {
 });
 
 // クリップボードにコピーする関数
-function copyToClipboard() {
+function copyToClipboardId() {
     // コピー対象をJavaScript上で変数として定義する
     let copyTarget = document.getElementById("roomIdText");
+
+    // コピー対象のテキストを選択する
+    copyTarget.select();
+
+    // 選択しているテキストをクリップボードにコピーする
+    clipboard.writeText(copyTarget.value); 
+    
+    alert('コピーしました．')
+}
+
+function copyToClipboardUrl() {
+    // コピー対象をJavaScript上で変数として定義する
+    let copyTarget = document.getElementById("commentUrl");
 
     // コピー対象のテキストを選択する
     copyTarget.select();
